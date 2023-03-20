@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import org.kordamp.ikonli.javafx.FontIcon?>
+<VBox spacing="10" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="250.0" prefWidth="300.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demofx.LoginController">
+   <children>
+      <Label layoutX="216.0" layoutY="14.0" text="Agenda">
+         <font>
+            <Font size="40.0" />
+         </font>
+      </Label>
+      <TextField fx:id="usuarioTextField" promptText="Usuário" />
+      <PasswordField fx:id="senhaPasswordField" promptText="Senha" />
+      <Button mnemonicParsing="false" onAction="#login" prefHeight="30.0" prefWidth="100.0" text="Entrar">
+         <graphic>
+            <FontIcon iconLiteral="ci-login" iconSize="10"/>
+         </graphic>
+      </Button>
+      <Label fx:id="erroLabel" layoutX="185.0" layoutY="329.0" prefHeight="18.0" prefWidth="200.0" textAlignment="CENTER" textFill="#f22b2b" />
+   </children>
+   <padding>
+      <Insets bottom="50.0" left="50.0" right="50.0" top="50.0" />
+   </padding>
+</VBox>
