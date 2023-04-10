@@ -3,12 +3,12 @@ package com.example.demofx.view;
 import com.example.demofx.entities.Contato;
 import javafx.beans.property.SimpleStringProperty;
 
-public class ContatoDTO {
+public class ContatoViewModel {
     private SimpleStringProperty nome;
     private SimpleStringProperty telefone;
     private SimpleStringProperty email;
 
-    public ContatoDTO(String nome, String telefone, String email) {
+    public ContatoViewModel(String nome, String telefone, String email) {
         this.nome = new SimpleStringProperty(nome);
         this.telefone = new SimpleStringProperty(telefone);
         this.email = new SimpleStringProperty(email);
@@ -38,8 +38,8 @@ public class ContatoDTO {
         this.telefone.set(telefone);
     }
 
-    public static ContatoDTO fromContato(Contato contato) {
-        return new ContatoDTO(contato.getNome(), contato.getTelefone(), contato.getEmail());
+    public static ContatoViewModel fromContato(Contato contato) {
+        return new ContatoViewModel(contato.getNome(), contato.getTelefone(), contato.getEmail());
     }
 
     public String getEmail() {

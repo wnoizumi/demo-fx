@@ -1,25 +1,33 @@
 package com.example.demofx.service;
 
+import com.example.demofx.HibernateUtil;
 import com.example.demofx.entities.Contato;
+import jakarta.persistence.EntityManager;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class ContatosService {
 
-    private List<Contato> contatos = new ArrayList<>();
-
     public List<Contato> getAllContatos() {
-        return new ArrayList<>(contatos);
+        var entityManager = HibernateUtil.criarEntityManager();
+        return entityManager
+                .createQuery("from Contato c", Contato.class)
+                .getResultList();
     }
 
     public void inserir(Contato contato) {
         if (contato != null) {
-            contatos.add(contato);
+            EntityManager entityManager = null;
+            try {
+                entityManager = HibernateUtil.criarEntityManager();
+                entityManager.getTransaction().begin();
+                entityManager.persist(contato);
+                entityManager.getTransaction().commit();
+            } finally {
+                if (entityManager != null) {
+                    entityManager.close();
+                }
+            }
         }
-    }
-
-    public void excluir(String telefone) {
-        contatos.removeIf(c -> c.getTelefone().equals(telefone));
     }
 }

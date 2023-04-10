@@ -3,9 +3,7 @@ package com.example.demofx.service;
 import com.example.demofx.entities.Usuario;
 
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.Map;
-import java.util.Set;
 
 public class LoginService {
 

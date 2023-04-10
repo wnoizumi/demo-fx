@@ -2,7 +2,7 @@ package com.example.demofx;
 
 import com.example.demofx.entities.Contato;
 import com.example.demofx.service.ContatosService;
-import com.example.demofx.view.ContatoDTO;
+import com.example.demofx.view.ContatoViewModel;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -24,13 +24,13 @@ import java.util.stream.Collectors;
 public class ListaContatosController {
 
     private ContatosService contatosService = new ContatosService();
-    private ObservableList<ContatoDTO> contatosItems;
+    private ObservableList<ContatoViewModel> contatosItems;
     @FXML
-    private TableView<ContatoDTO> contatosTableView;
+    private TableView<ContatoViewModel> contatosTableView;
     @FXML
-    private TableColumn<ContatoDTO, String> nomeTableColumn;
+    private TableColumn<ContatoViewModel, String> nomeTableColumn;
     @FXML
-    private TableColumn<ContatoDTO, String> telefoneTableColumn;
+    private TableColumn<ContatoViewModel, String> telefoneTableColumn;
     @FXML
     private TextField nomeTextField;
     @FXML
@@ -61,8 +61,6 @@ public class ListaContatosController {
 
     @FXML
     public void initialize() {
-        contatosService.inserir(new Contato("Willian", "3423423", "willian@email.com"));
-
         nomeTableColumn.setCellValueFactory(
                 new PropertyValueFactory<>("nome"));
         telefoneTableColumn.setCellValueFactory(
@@ -75,7 +73,7 @@ public class ListaContatosController {
                 (observable, oldValue, newValue) -> showContato(newValue));
     }
 
-    private void showContato(ContatoDTO newValue) {
+    private void showContato(ContatoViewModel newValue) {
         nomeTextField.setText(newValue.getNome());
         telefoneTextField.setText(newValue.getTelefone());
         emailTextField.setText(newValue.getEmail());
@@ -88,16 +86,16 @@ public class ListaContatosController {
             contatoController.show(stage);
             if (contatoController.foiSalvo()) {
                 contatosService.inserir(novoContato);
-                contatosItems.add(ContatoDTO.fromContato(novoContato));
+                contatosItems.add(ContatoViewModel.fromContato(novoContato));
             }
         } catch (IOException e) {
         }
     }
 
-    private List<ContatoDTO> getContatosDTOs() {
+    private List<ContatoViewModel> getContatosDTOs() {
         return contatosService.getAllContatos()
                 .stream()
-                .map(ContatoDTO::fromContato)
+                .map(ContatoViewModel::fromContato)
                 .collect(Collectors.toList());
     }
 }

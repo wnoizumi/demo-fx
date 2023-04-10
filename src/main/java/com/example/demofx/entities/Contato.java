@@ -1,9 +1,19 @@
 package com.example.demofx.entities;
 
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.Id;
+
 import java.util.Objects;
 
+@Entity
 public class Contato {
 
+    @Id
+    @GeneratedValue
+    private long id;
+    @Column(nullable = false)
     private String nome;
     private String telefone;
     private String email;
@@ -16,7 +26,15 @@ public class Contato {
     }
 
     public Contato() {
-        
+
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
 
     public String getNome() {
@@ -48,11 +66,11 @@ public class Contato {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Contato contato = (Contato) o;
-        return Objects.equals(telefone, contato.telefone);
+        return getClass().equals(o.getClass());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(telefone);
+        return Objects.hash(id);
     }
 }
