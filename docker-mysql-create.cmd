@@ -1,0 +1,1 @@
+docker run -p 3306:3306 --network mynetwork  --name mysql-demofx  -e MYSQL_ROOT_PASSWORD=password -d mysql:8.0.32
